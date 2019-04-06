@@ -1,0 +1,35 @@
+# Ignore temporary libraries
+lib/*
+
+# Keep permanent libraries
+!lib/googletest
+
+# Ignore googletest CMake
+lib/googletest/CMakeFiles/*
+lib/googletest/Makefile
+lib/googletest/cmake_install.cmake
+lib/googletest/build
+
+# Ignore any executables
+build/*
+!build/ReadMe.txt
+
+# Ignore doxygen output
+docs/html/*
+docs/latex/*
+docs/xml/*
+docs/man/*
+docs/rtf/*
+
+# Ignore pre-compiled headers
+include/*.gch
+
+# Ignore VS Code
+.vscode/*
+
+# Ignore docs (for now)
+doc/html/*
+doc/latex/*
+doc/man/*
+doc/rtf/*
+doc/xml/*
