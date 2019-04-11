@@ -5,11 +5,13 @@
 
 #pragma once
 
-#include "Types.hpp"
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "Types.hpp"
+#include "Sequence.hpp"
+
 
 
 ///////////////////////////////////////////////////////////////////////////////

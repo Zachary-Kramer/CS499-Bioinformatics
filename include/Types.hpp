@@ -20,11 +20,3 @@
 // Is extremely important to *not* use int because of the human genome
 using Index = std::size_t;
 
-// ID: sequence
-struct Sequence {
-    std::string DNA;
-    std::string id;
-
-    explicit Sequence(const std::string& seqID, const std::string& seq) :
-    DNA(seq), id(seqID) {}
-};

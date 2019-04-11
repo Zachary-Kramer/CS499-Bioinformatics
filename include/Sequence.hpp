@@ -9,6 +9,16 @@
 #include "Types.hpp"
 
 
+// Just pairs together the DNA sequence and its ID, more explicit than std::pair
+struct Sequence {
+    std::string DNA;
+    std::string id;
+
+    explicit Sequence(const std::string& seqID, const std::string& seq) :
+    DNA(seq), id(seqID) {}
+};
+
+
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief Extract substrings from given string AKA make k-mers
 ///////////////////////////////////////////////////////////////////////////////
