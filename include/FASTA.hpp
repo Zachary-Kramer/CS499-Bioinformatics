@@ -3,6 +3,8 @@
 /// @brief Handle reading in FASTA files into sequences
 ///////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #include "Types.hpp"
 #include <vector>
 #include <string>
@@ -16,7 +18,7 @@
 /// C++11 and higher doesn't return a copy of the data here, it performs
 /// a move operation. This is important when dealing with the human genome.
 ///////////////////////////////////////////////////////////////////////////////
-inline std::vector<std::string> ReadFASTA(const std::string& filePath) {
+inline std::vector<Sequence> ReadFASTA(const std::string& filePath) {
     // Open file
     std::ifstream fasta(filePath);
     if (!fasta.good()) {
@@ -24,7 +26,7 @@ inline std::vector<std::string> ReadFASTA(const std::string& filePath) {
     }
 
     // Prepare to store sequences
-    std::vector<std::string> sequences;
+    std::vector<Sequence> sequences;
 
     // Read file
     std::string line, id, sequence;
@@ -38,8 +40,10 @@ inline std::vector<std::string> ReadFASTA(const std::string& filePath) {
         if (line.at(0) == '>') {
             // If we just read a sequence, save it
             if (!sequence.empty()) {
-                sequences.push_back(sequence);
+                sequences.push_back(Sequence(id, sequence));
             }
+            // Extract ID
+            id = line.substr(1);
             sequence.clear();
         } else {
             // Sequences are often multi-line
@@ -49,7 +53,7 @@ inline std::vector<std::string> ReadFASTA(const std::string& filePath) {
 
     // Save final sequence, terminated by EOF
     if (!sequence.empty()) {
-        sequences.push_back(sequence);
+        sequences.push_back(Sequence(id, sequence));
     }
 
     return sequences;

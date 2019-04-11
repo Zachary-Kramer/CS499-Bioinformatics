@@ -3,6 +3,8 @@
 /// @brief Defines various custom data types for ease-of-use
 ///////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #include <utility>   // For std::size_t
 #include <iostream>  // For printing
 #include <iomanip>   // For messing with precision
@@ -17,3 +19,12 @@
 // https://en.cppreference.com/w/cpp/types/size_t
 // Is extremely important to *not* use int because of the human genome
 using Index = std::size_t;
+
+// ID: sequence
+struct Sequence {
+    std::string DNA;
+    std::string id;
+
+    explicit Sequence(const std::string& seqID, const std::string& seq) :
+    DNA(seq), id(seqID) {}
+};

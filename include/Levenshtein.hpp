@@ -3,6 +3,9 @@
 /// @brief Calculate Levenshtein distance
 ///////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
+
 #include <algorithm>
 #include <numeric>
 #include <vector>

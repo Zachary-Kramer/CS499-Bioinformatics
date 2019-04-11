@@ -21,6 +21,6 @@ TEST(FASTA, Small) {
         "FDSWDEFVSKSVELFRNHPDTTRYVVKYRHCEGKLVLKVTDNHECLKFKTDQAQDAKKMEK"
     };
     for (Index i = 0; i < 11; ++i) {
-        ASSERT_EQ(references.at(i), sequences.at(i));
+        ASSERT_EQ(references.at(i), sequences.at(i).DNA);
     }
 }

@@ -3,6 +3,8 @@
 /// @brief Provides functionality for manipulating DNA sequences
 ///////////////////////////////////////////////////////////////////////////////
 
+#pragma once
+
 #include <vector>
 #include "Types.hpp"
 
