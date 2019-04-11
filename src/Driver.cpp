@@ -34,14 +34,14 @@ int main(int argc, char* argv[]) {
             // Calculate distance
             localRanks.push_back(Rank(seq.id, substr, LevenshteinDistance(substr, substring)));
         }
-        // Sort in descending order
-        std::sort(localRanks.begin(), localRanks.end(), std::greater());
+        // Sort in ascending order
+        std::sort(localRanks.begin(), localRanks.end());
         // Take the best two
         globalRanks.push_back(localRanks.at(0));
         globalRanks.push_back(localRanks.at(1));
     }
 
-    std::sort(globalRanks.begin(), globalRanks.end(), std::greater());
+    std::sort(globalRanks.begin(), globalRanks.end());
     for (const auto& rank : globalRanks) {
         std::cout << rank.id << ": " << rank.substring << " | " << rank.levenshtein << std::endl;
     }
