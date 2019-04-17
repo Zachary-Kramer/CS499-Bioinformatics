@@ -13,7 +13,7 @@
 int main(int argc, char* argv[]) {
     // Parse command-line arguments
     if (argc != 3) {
-        throw std::invalid_argument("3 arguments are required");
+        throw std::invalid_argument("Must be called with: <FASTA path> <substring>");
     }
     const std::string filePath(argv[1]);
     const std::string substring(argv[2]);
