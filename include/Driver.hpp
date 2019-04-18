@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <limits>
 #include "FASTA.hpp"
 #include "Levenshtein.hpp"
 #include "Rank.hpp"
@@ -35,7 +36,7 @@ inline void Run(const std::string& filePath,
     // parallelizing individual sequences because the CPU threads get re-assinged
     // very quickly.
     const unsigned concurrentThreadsSupported = std::thread::hardware_concurrency();
-    bool parallelizeKMers = (sequences.size() < concurrentThreadsSupported) ? true : false;
+    const bool parallelizeKMers = (sequences.size() < concurrentThreadsSupported) ? true : false;
 
     // Go through each sequence
     Index i;
@@ -60,7 +61,7 @@ inline void Run(const std::string& filePath,
         const std::string id = sequences.at(i).id;
         // Create a fake rank
         Rank bestRank;
-        bestRank.levenshtein = 100000000;
+        bestRank.levenshtein = std::numeric_limits<int>::max();
         // Parallelize
         #pragma omp parallel for schedule(dynamic) \
         private(j) firstprivate(id) \
