@@ -32,7 +32,7 @@ SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS} -O3 -g" CACHE STRING "co
 
 # Set default build type to RelWithDebInfo
 IF (NOT CMAKE_BUILD_TYPE)
-  SET (CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING
+  SET (CMAKE_BUILD_TYPE "Release" CACHE STRING
       "Choose the type of build, options are: Debug Release RelWithDebInfo."
       FORCE)
 ENDIF (NOT CMAKE_BUILD_TYPE)
