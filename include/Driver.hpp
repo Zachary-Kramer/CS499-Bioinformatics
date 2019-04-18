@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <thread>
 #include "FASTA.hpp"
 #include "Levenshtein.hpp"
 #include "Rank.hpp"
@@ -29,9 +30,12 @@ inline void Run(const std::string& filePath,
     // Prepare to store rankings
     std::vector<Rank> globalRanks(sequences.size());
 
-    // If we are dealing with more than 4 sequences, parallelize
-    // at the sequence level. Otherwise parallelize at the k-mer level.
-    bool parallelizeKMers = (sequences.size() < 4) ? true : false;
+    // If we can assign a sequence to each thread, parallelize at the sequence-level.
+    // Otherwise, parallelize individual sequences. There is a greater overhead of
+    // parallelizing individual sequences because the CPU threads get re-assinged
+    // very quickly.
+    const unsigned concurrentThreadsSupported = std::thread::hardware_concurrency();
+    bool parallelizeKMers = (sequences.size() < concurrentThreadsSupported) ? true : false;
 
     // Go through each sequence
     Index i;
