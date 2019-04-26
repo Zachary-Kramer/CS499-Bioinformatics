@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
-/// @file NewDistance.hpp
-/// @brief Calculate 
+/// @file SorensenDice.hpp
+/// @brief Calculate Sorensen Dice coefficient
 ///////////////////////////////////////////////////////////////////////////////
 
 #pragma once
@@ -10,42 +10,43 @@
 #include <numeric>
 #include <vector>
 #include "Types.hpp"
-#include <string.h>
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// @brief Calculate 
+/// @brief Calculate Sorensen Dice distance
 ///////////////////////////////////////////////////////////////////////////////
-static double SorensenDice(const std::string& string1, const std::string& string2)
+inline double SorensenDice(const std::string& seqA, const std::string& seqB)
 {
-	if (string1.empty() || string2.empty())
+    // Empty strings are invalid
+	if (seqA.empty() || seqB.empty()) {
 		return 0;
+    }
 
-	if (string1 == string2)
+    // Equal strings have a score of 1
+	if (seqA == seqB) {
 		return 1;
+    }
 
-	int length1 = string1.size();
-	int length2 = string2.size();
+    // Get sequence sizes
+    const Index seqASize = seqA.size();
+    const Index seqBSize = seqB.size();
 
-	if (length1 < 2 || length2 < 2)
+    // Single characters are invalid due to bigrams
+	if (seqASize < 2 || seqBSize < 2) {
 		return 0;
+    }
 
 	double bigrams = 0;
-	int i = 0;
-	int j = 0;
-
-	while (i < length1 && j < length2)
-	{
-		auto a = string1.substr(i, 2);
-		auto b = string2.substr(j, 2);
-		int similarity = a.compare(b);
-
-		if (similarity == 0)
-			bigrams += 1;
-
+	Index i = 0;
+	Index j = 0;
+	while (i < seqASize && j < seqBSize) {
+        // If bigrams are equal, increase the count
+        if (seqA.substr(i, 2).compare(seqB.substr(j, 2)) == 0) {
+            ++bigrams;
+        }
 		++i;
 		++j;
 	}
 
-	return (2 * bigrams) / (length1 + length2);
+	return (2 * bigrams) / (seqASize + seqBSize);
 }

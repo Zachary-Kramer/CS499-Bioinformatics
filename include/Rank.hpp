@@ -12,18 +12,27 @@ struct Rank {
     std::string id;
     std::string substring;
     int levenshtein;
+    double sorensen;
+    double score;
 
     // Constructors
     explicit Rank() {}
-    explicit Rank(const std::string& seqID, const std::string& substr, const int lScore) :
-    id (seqID), substring(substr), levenshtein(lScore) {
+    explicit Rank(const std::string& seqID,
+                  const std::string& substr,
+                  const int lScore,
+                  const double sScore) :
+    id (seqID),
+    substring(substr),
+    levenshtein(lScore),
+    sorensen(sScore),
+    score(lScore - sScore) {
     }
 
     // Sorting
     bool operator > (const Rank& r) const {
-        return (levenshtein > r.levenshtein);
+        return (score > r.score);
     }
     bool operator < (const Rank& r) const {
-        return (levenshtein < r.levenshtein);
+        return (score < r.score);
     }
 };

@@ -10,6 +10,7 @@
 #include <limits>
 #include "FASTA.hpp"
 #include "Levenshtein.hpp"
+#include "SorensenDice.hpp"
 #include "Rank.hpp"
 #include "Sequence.hpp"
 #include "Types.hpp"
@@ -59,27 +60,30 @@ inline void Run(const std::string& filePath,
         // Now calculate the Levenshtein distance for each k-mer
         Index j;
         const std::string id = sequences.at(i).id;
-        // Create a fake rank
-        Rank bestRank;
-        bestRank.levenshtein = std::numeric_limits<int>::max();
         // Parallelize
         #pragma omp parallel for schedule(dynamic) \
         private(j) firstprivate(id) \
         if (parallelizeKMers)
         for (j = 0; j < substrings.size(); ++j) {
             // Calculate distance
-            const Rank rank(id, substrings.at(j), LevenshteinDistance(substrings.at(j), substring));
-            if (rank < bestRank) bestRank = rank;
+            localRanks.at(j) = \
+            Rank(id,
+                substrings.at(j),
+                LevenshteinDistance(substrings.at(j), substring),
+                SorensenDice(substrings.at(j), substring));
         }
         // Save best substring + score
-        globalRanks.at(i) = bestRank;
+        globalRanks.at(i) = *std::min(localRanks.begin(), localRanks.end());
     }
 
     // Output best scores
     std::sort(globalRanks.begin(), globalRanks.end());
     if (verbose) {
         for (const auto& rank : globalRanks) {
-            std::cout << rank.id << ": " << rank.substring << " | " << rank.levenshtein << std::endl;
+            std::cout << rank.id << ": " << rank.substring << " | " << \
+            "Distance: " << rank.score << " | " << \
+            "Levenshtein: " << rank.levenshtein << " | " << \
+            "Sorensen: " << rank.sorensen << std::endl;
         }
     }
 }
