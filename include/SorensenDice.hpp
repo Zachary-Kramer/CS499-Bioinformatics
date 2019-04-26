@@ -5,7 +5,6 @@
 
 #pragma once
 
-
 #include <algorithm>
 #include <numeric>
 #include <vector>
@@ -15,16 +14,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// @brief Calculate Sorensen Dice distance
 ///////////////////////////////////////////////////////////////////////////////
-inline double SorensenDice(const std::string& seqA, const std::string& seqB)
-{
+inline double SorensenDice(const std::string& seqA, const std::string& seqB) {
     // Empty strings are invalid
-	if (seqA.empty() || seqB.empty()) {
-		return 0;
+    if (seqA.empty() || seqB.empty()) {
+        return 0;
     }
 
     // Equal strings have a score of 1
-	if (seqA == seqB) {
-		return 1;
+    if (seqA == seqB) {
+        return 1;
     }
 
     // Get sequence sizes
@@ -32,21 +30,21 @@ inline double SorensenDice(const std::string& seqA, const std::string& seqB)
     const Index seqBSize = seqB.size();
 
     // Single characters are invalid due to bigrams
-	if (seqASize < 2 || seqBSize < 2) {
-		return 0;
+    if (seqASize < 2 || seqBSize < 2) {
+        return 0;
     }
 
-	double bigrams = 0;
-	Index i = 0;
-	Index j = 0;
-	while (i < seqASize && j < seqBSize) {
+    double bigrams = 0;
+    Index i = 0;
+    Index j = 0;
+    while (i < seqASize && j < seqBSize) {
         // If bigrams are equal, increase the count
         if (seqA.substr(i, 2).compare(seqB.substr(j, 2)) == 0) {
             ++bigrams;
         }
-		++i;
-		++j;
-	}
+        ++i;
+        ++j;
+    }
 
-	return (2 * bigrams) / (seqASize + seqBSize);
+    return (2 * bigrams) / (seqASize + seqBSize);
 }
