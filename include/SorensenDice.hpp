@@ -46,5 +46,5 @@ inline double SorensenDice(const std::string& seqA, const std::string& seqB) {
         ++j;
     }
 
-    return (2 * bigrams) / (seqASize + seqBSize);
+    return (2.0 * bigrams) / static_cast<double>(seqASize + seqBSize);
 }
