@@ -25,21 +25,22 @@ struct Sequence {
 inline std::vector<std::string> GetSubstrings(
     const Index start,
     const Index length,
-    const Index amount,
+    Index& amount,  // This is modified to tell the user how much was actually generated
     const std::string& sequence) {
     const Index sequenceSize = sequence.size();
 
+    
     // How many substrings can we generate?
     const Index maxSubstr = (sequenceSize - start) - 2*length;
-    if (amount > maxSubstr) {
-        throw std::invalid_argument("Too many substrings were requested");
-    }
+
+    // If user requested too many substrings, truncate it.
+    amount = (amount > maxSubstr) ? maxSubstr : amount;
 
     // Extract substrings
     // Initialize vector here to ensure contiguous memory
     std::vector<std::string> substrings(amount);
     Index i = 0;
-    for (Index j = start; j < amount; ++j) {
+    for (Index j = start; j < amount+start; ++j) {
         substrings.at(i++) = sequence.substr(j, length);
     }
 

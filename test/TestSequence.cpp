@@ -8,7 +8,8 @@
 TEST(Sequence, Substr) {
     // Get substrings
     const std::string seq = "ACTGACTCGACG";
-    const auto substrings = GetSubstrings(0, 3, 5, seq);
+    Index numKmers = 5;
+    const auto substrings = GetSubstrings(0, 3, numKmers, seq);
 
     // Compare results
     std::vector<std::string> substringsRef = {
