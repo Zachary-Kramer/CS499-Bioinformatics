@@ -77,17 +77,17 @@ inline void Run(const std::string& filePath,
 
         // Save best substring + score
         globalRanks.at(i) = *std::min(localRanks.begin(), localRanks.end());
-        }
+    }
 
-        // Output best scores
-        std::sort(globalRanks.begin(), globalRanks.end());
-        if (verbose) {
-            for (const auto& rank : globalRanks) {
-                std::cout << rank.id << ": " << rank.substring << " | " << \
-                "Distance: " << rank.score << " | " << \
-                "Levenshtein: " << rank.levenshtein << " | " << \
-                "Sorensen: " << rank.sorensen << std::endl;
-            }
+    // Output best scores
+    std::sort(globalRanks.begin(), globalRanks.end());
+    if (verbose) {
+        for (const auto& rank : globalRanks) {
+            std::cout << rank.id << ": " << rank.substring << " | " << \
+            "Distance: " << rank.score << " | " << \
+            "Levenshtein: " << rank.levenshtein << " | " << \
+            "Sorensen: " << rank.sorensen << std::endl;
         }
     }
-    }  // namespace FuzzyMatch
+}
+}  // namespace FuzzyMatch
