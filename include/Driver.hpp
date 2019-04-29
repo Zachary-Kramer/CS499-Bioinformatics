@@ -71,12 +71,12 @@ inline void Run(const std::string& filePath,
                 Rank(id,
                      substrings.at(k),
                      LevenshteinDistance(substrings.at(k), substring),
-                     SorensenDice(substrings.at(j), substring));
+                     SorensenDice(substrings.at(k), substring));
             }
         }
 
         // Save best substring + score
-        globalRanks.at(i) = *std::min(localRanks.begin(), localRanks.end());
+        globalRanks.at(i) = *std::min_element(localRanks.begin(), localRanks.end());
     }
 
     // Output best scores
