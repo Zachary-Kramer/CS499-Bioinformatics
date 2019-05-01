@@ -13,7 +13,7 @@ struct Rank {
     std::string substring;
     int levenshtein;
     double sorensen;
-    double score;
+    double score = 100000;  // In case we generate too many ranks
 
     // Constructors
     explicit Rank() {}
