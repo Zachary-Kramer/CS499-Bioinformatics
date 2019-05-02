@@ -1,4 +1,4 @@
-# CS499-Bioinformatics
+# FMWS (Fuzzy Matching With Seeds)
 
 ReadMe in-development.
 
@@ -45,7 +45,7 @@ __Make__
 We use CMake to build our code. It produces a unit test executable (tester) and a command-line executable (run)
 
 ```sh
-cd CS499-Bioinformatics/build
+cd FMWS/build
 cmake ..
 make  # add -jX where X is twice the number of cores of your CPU
 ```
@@ -55,13 +55,13 @@ __Use__
 To run the unit tests, call tester like below.
 
 ```sh
-cd CS499-Bioinformatics/build
+cd FMWS/build
 ./tester
 ```
 
 To use the tool, call run like below.
 
 ```sh
-cd CS499-Bioinformatics/build
+cd FMWS/build
 ./run "Path to FASTA file" "some sequence"
 ```
