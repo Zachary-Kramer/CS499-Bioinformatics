@@ -1,8 +1,5 @@
 # FMWS (Fuzzy Matching With Seeds)
 
-ReadMe in-development.
-
-
 ### What is it?
 
 A command-line interface that takes in a FASTA file and a sequence, then finds the best matching substrings of each sequence in the FASTA file using fuzzy-matching.
@@ -17,7 +14,7 @@ Now, fuzzy matching is used in all sorts of applications, including computer ass
 
 Different use cases for fuzzy matching range from searching for a list based on relevance to providing recommendations to replace potentially misspelled search words. 
 
-When running our program with three different sequences, here were our outcomes.
+When running our program with three different FASTA sequences, a substring of ACTCACCACTGT, and an Intel i7-4700HQ, these were our outcomes.
 
 Sequence (length)  | Levenshtein | Sorensen | Time(Parallelized vs Non-parallelized) |
 ------------------ | ----------- | -------- | -------------------------------------- |
