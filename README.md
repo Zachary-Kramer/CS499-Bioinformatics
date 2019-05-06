@@ -7,6 +7,11 @@ ReadMe in-development.
 
 A command-line interface that takes in a FASTA file and a sequence, then finds the best matching substrings of each sequence in the FASTA file using fuzzy-matching.
 
+### Why?
+
+Fuzzy matching is the process of finding and matching an approximate pattern across strings. The concept started back in 1920, with the many-valued logic proposed by Jan Łukasiewicz, and then followed the evolution of translation memory tools leading up to the 90's.
+
+Now, fuzzy matching is used in all sorts of applications, including computer assisted translation (CAT) and spell checking. In bioinformatics, fuzzy matching is used for approximate string matching on large DNA sequences. This is what our FMWS tool is meant to facilitate.
 
 ### Set-up instructions
 
