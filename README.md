@@ -18,12 +18,12 @@ Now, fuzzy matching is used in all sorts of applications, including computer ass
 Different use cases for fuzzy matching range from searching for a list based on relevance to providing recommendations to replace potentially misspelled search words. 
 
 When running our program with three different sequences, here were our outcomes.
-| Sequence (length)  | Levenshtein | Sorensen | Time(Parallelized vs Non-parallelized)
-| ------------- | ------------- | ------------- | ------------- |
-| E.Coli (4641652)  | 1  | 0.909091  | 2.01 sec vs 5.83 sec  |
-| Bacillus Anthracis (5227293)  | 1  | 0.909091  | 2.19 sec vs 6.46 sec  |
-| Bacillus Cereus (5411809)  | 1  | 0.909091  | 2.27 sec vs 6.60 sec  |
 
+Sequence (length)  | Levenshtein | Sorensen | Time(Parallelized vs Non-parallelized) |
+------------------ | ----------- | -------- | -------------------------------------- |
+E.Coli (4641652)  | 1  | 0.909091  | 2.01 sec vs 5.83 sec  |
+Bacillus Anthracis (5227293)  | 1  | 0.909091  | 2.19 sec vs 6.46 sec  |
+Bacillus Cereus (5411809)  | 1  | 0.909091  | 2.27 sec vs 6.60 sec  |
 
 ### Set-up instructions
 
