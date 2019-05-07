@@ -2,13 +2,27 @@
 
 ### What is it?
 
-A command-line interface that takes in a FASTA file and a sequence, then finds the best matching substrings of each sequence in the FASTA file using fuzzy-matching.
+A command-line interface that takes in a [FASTA](https://en.wikipedia.org/wiki/FASTA) file and a sequence, then finds the best matching substrings of each sequence in the FASTA file using [fuzzy matching](https://en.wikipedia.org/wiki/Fuzzy_matching_(computer-assisted_translation)) and using [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) and [Sørensen–Dice coefficient](https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient) as metrics.
 
 ### Why?
 
-Fuzzy matching is the process of finding and matching an approximate pattern across strings. The concept started back in 1920, with the many-valued logic proposed by Jan Łukasiewicz, and then followed the evolution of translation memory tools leading up to the 90's.
+Fuzzy matching is the process of finding and matching an approximate pattern across strings. The concept started back in 1920, with the many-valued logic proposed by Jan Łukasiewicz, and then followed the evolution of translation memory tools leading up to the 1990's.
 
 Now, fuzzy matching is used in all sorts of applications, including computer assisted translation (CAT) and spell checking. In bioinformatics, fuzzy matching is used for approximate string matching on large DNA sequences. This is what our FMWS tool is meant to facilitate.
+
+### Motivation
+
+This project was created for Northern Arizona University's CS 499 class in Bioinformatics (Spring 2019 term). The primary driving force was proposing our own idea and implementation as well as having the flexibility to do as we please. We also proposed this idea to give us the opportunity to personalize our solution.
+
+### Main Logic
+
+1. Parse command-line arguments
+2. Read in FASTA file
+3. Extract k-mers from sequence
+4. Compare each k-mer to the given substring (parallelized)
+5. Store the best substring of each sequence
+6. Sort rankings
+7. Output smallest distances, in order
 
 ###  Use Cases
 
